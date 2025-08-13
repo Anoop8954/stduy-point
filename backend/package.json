@@ -1,0 +1,20 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "engines": { "node": "20.x" },
+  "scripts": {
+    "start": "node server.js",
+    "postinstall": "cd ../frontend && npm ci && npm run build"
+  },
+  "dependencies": {
+    "express": "^4",
+    "cors": "^2",
+    "dotenv": "^16",
+    "sequelize": "^6",
+    "mysql2": "^3",
+    "multer": "^1",
+    "bcryptjs": "^2",
+    "jsonwebtoken": "^9",
+    "express-validator": "^7"
+  }
+}
