@@ -41,3 +41,23 @@ Built using **React.js**, **Node.js**, **Express.js**, and **PostgreSQL/MySQL** 
 ---
 
 ## Folder Structure
+study-point/
+│
+├── backend/ # Express.js API
+│ ├── controllers/ # Route logic
+│ ├── middleware/ # Auth & admin check
+│ ├── models/ # Sequelize models
+│ ├── routes/ # API routes
+│ ├── uploads/ # Course images
+│ └── server.js # Entry point
+│
+├── frontend/ # React app
+│ ├── public/
+│ ├── src/
+│ │ ├── components/ # Navbar etc.
+│ │ ├── context/ # AuthContext
+│ │ ├── pages/ # Login, Dashboard, AdminPanel
+│ │ ├── services/ # API configuration
+│ │ └── App.js
+│
+└── README.md
