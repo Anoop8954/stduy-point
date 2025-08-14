@@ -168,25 +168,3 @@ MIT License
 
 I can also **add screenshots** of your project and a **deployment guide section** for Netlify + Render if you want this README to look professional and ready for submission.  
 
-Do you want me to prepare that enhanced version?
-
-You said:
-create a mail to send git repo of assiassignments https://github.com/Anoop8954/stduy-point
-ChatGPT said:
-
-Here’s a short and professional email draft you can send with your GitHub repo link:
-
-Subject: Submission of Assignment – Study Point Project
-
-Body:
-Dear [Recipient's Name],
-
-I am sharing my completed assignment for your review. The project repository can be accessed via the following link:
-
-🔗 GitHub Repository: https://github.com/Anoop8954/stduy-point
-
-Please let me know if you face any issues accessing the code or require any additional details.
-
-Best regards,
-Anoop Kumar
-B.Tech CSE
