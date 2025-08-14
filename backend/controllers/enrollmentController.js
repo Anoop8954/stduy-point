@@ -1,11 +1,13 @@
 const { Enrollment, Course } = require("../models");
 
 exports.enrollCourse = async (req, res) => {
-    console.log("User from token:", req.user);
   try {
-    const { courseId } = req.params;
-if (!courseId) return res.status(400).json({ message: "Course ID required" });
+    const { courseId } = req.params; // ✅ FIXED
 
+    // Debugging
+    console.log("Enrolling user:", req.user.id, "in course:", courseId);
+
+    // Check if already enrolled
     const existing = await Enrollment.findOne({
       where: { userId: req.user.id, courseId }
     });
@@ -23,6 +25,8 @@ if (!courseId) return res.status(400).json({ message: "Course ID required" });
     res.status(500).json({ message: err.message });
   }
 };
+
+
 
 
 

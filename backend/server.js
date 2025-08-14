@@ -1,47 +1,39 @@
-require("dotenv").config();
-const path = require("path");
-const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
+const dotenv = require("dotenv");
+const path = require("path");
 
-// Create app first!
+dotenv.config();
 const app = express();
 
-// Core middleware
-app.use(express.json());
-app.use(cors()); // production won’t need CORS if frontend served by backend
+// Middlewares
+app.use(cors({
+  origin: process.env.FRONTEND_URL, // we'll set this in .env later
+  credentials: true
+}));
+app.use(express.json()); // Required to parse JSON bodies
+app.use(express.urlencoded({ extended: true }));
 
-// Ensure uploads dir exists
-const uploadDir = path.join(__dirname, "uploads");
-if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 
-// Serve uploads (images)
-app.use("/uploads", express.static(uploadDir));
+// Serve uploaded images
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// Mount API routes with a clear prefix
-app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/courses", require("./routes/courseRoutes"));
-app.use("/api/enroll", require("./routes/enrollmentRoutes"));
+// Routes
+const authRoutes = require("./routes/authRoutes");
+const courseRoutes = require("./routes/courseRoutes");
+app.use("/enroll", require("./routes/enrollmentRoutes"));
 
-// Serve React build in production
-if (process.env.NODE_ENV === "production") {
-  const buildPath = path.join(__dirname, "../frontend/build");
-  app.use(express.static(buildPath));
-  app.get("*", (_req, res) =>
-    res.sendFile(path.join(buildPath, "index.html"))
-  );
-}
 
-const PORT = process.env.PORT || 5000;
+app.use("/auth", authRoutes);
+app.use("/courses", courseRoutes);
 
-// DB connect (Sequelize)
+// Database
 const { sequelize } = require("./models");
-sequelize
-  .authenticate()
-  .then(() => console.log("DB connected"))
-  .catch((e) => console.error("DB connection error:", e));
 
-// Optionally sync (no destructive force!)
-sequelize.sync({ alter: false }).then(() => {
-  app.listen(PORT, () => console.log(`Server running on ${PORT}`));
-});
+sequelize.authenticate()
+  .then(() => console.log("✅ Database connected"))
+  .catch(err => console.error("❌ DB Error:", err));
+
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
