@@ -61,3 +61,132 @@ study-point/
 │ │ └── App.js
 │
 └── README.md
+
+
+
+---
+
+## Local Development Setup
+
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/Anoop8954/stduy-point.git
+cd stduy-point
+2️⃣ Backend Setup
+cd backend
+npm install
+
+
+Create .env file:
+
+# Database
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=yourpassword
+DB_NAME=student_enrollment
+DB_DIALECT=mysql
+
+# JWT
+JWT_SECRET=your_secret_key
+JWT_EXPIRES_IN=1d
+NODE_ENV=development
+
+
+Run backend:
+
+npm start
+
+
+Default runs on http://localhost:5000
+
+3️⃣ Frontend Setup
+cd ../frontend
+npm install
+
+
+Create .env file:
+
+REACT_APP_API_URL=http://localhost:5000
+
+
+Run frontend:
+
+npm start
+
+
+Default runs on http://localhost:3000
+
+Deployment
+Backend (Render)
+
+Push code to GitHub
+
+Go to Render → New Web Service
+
+Connect repo → Set root directory to backend
+
+Add environment variables (same as .env)
+
+Deploy
+
+Database (Render PostgreSQL or MySQL on Railway)
+
+Create DB and update .env variables accordingly.
+
+Frontend (Netlify)
+
+Go to Netlify → New Site from Git
+
+Set root directory to frontend
+
+Add environment variable:
+
+REACT_APP_API_URL=https://your-backend.onrender.com
+
+
+Deploy
+
+Common Issues
+
+CORS Error: Ensure backend server.js has:
+
+app.use(cors({
+  origin: ["https://your-frontend.netlify.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
+
+Image Uploads on Render: Render restarts lose local uploads — use a cloud service (Cloudinary, AWS S3).
+
+License
+
+MIT License
+
+
+---
+
+I can also **add screenshots** of your project and a **deployment guide section** for Netlify + Render if you want this README to look professional and ready for submission.  
+
+Do you want me to prepare that enhanced version?
+
+You said:
+create a mail to send git repo of assiassignments https://github.com/Anoop8954/stduy-point
+ChatGPT said:
+
+Here’s a short and professional email draft you can send with your GitHub repo link:
+
+Subject: Submission of Assignment – Study Point Project
+
+Body:
+Dear [Recipient's Name],
+
+I am sharing my completed assignment for your review. The project repository can be accessed via the following link:
+
+🔗 GitHub Repository: https://github.com/Anoop8954/stduy-point
+
+Please let me know if you face any issues accessing the code or require any additional details.
+
+Best regards,
+Anoop Kumar
+B.Tech CSE
