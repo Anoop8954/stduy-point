@@ -2,22 +2,25 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 
 const Course = sequelize.define("Course", {
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false,
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
   },
-  image: {
-  type: DataTypes.STRING, // store file path
-  allowNull: true
+  title: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
   },
   description: {
     type: DataTypes.TEXT,
     allowNull: false,
   },
   duration: {
-    type: DataTypes.STRING, // e.g. "3 months"
+    type: DataTypes.STRING(100),
     allowNull: false,
   },
+}, {
+  timestamps: true,
 });
 
 module.exports = Course;

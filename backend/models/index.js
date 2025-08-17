@@ -1,5 +1,5 @@
 const sequelize = require("../config/db");
-const User = require("./users");
+const User = require("./User");       // ✅ Ensure filename matches
 const Course = require("./Course");
 const Enrollment = require("./Enrollment");
 
