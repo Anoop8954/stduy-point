@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db"); // your sequelize instance
+const sequelize = require("../config/database");
 
 const User = sequelize.define("User", {
   id: {
@@ -7,25 +7,26 @@ const User = sequelize.define("User", {
     autoIncrement: true,
     primaryKey: true,
   },
-  name: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-  },
-  email: {
-    type: DataTypes.STRING(255),
+  username: {
+    type: DataTypes.STRING,
     allowNull: false,
     unique: true,
   },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true,
+    },
+  },
   password: {
-    type: DataTypes.STRING(255),
+    type: DataTypes.STRING,
     allowNull: false,
   },
-  role: {
-    type: DataTypes.ENUM("student", "admin"),
-    defaultValue: "student",
-  },
 }, {
-  timestamps: true, // adds createdAt & updatedAt automatically
+  timestamps: true,
+  tableName: "users",
 });
 
 module.exports = User;

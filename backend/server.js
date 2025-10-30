@@ -29,15 +29,11 @@ app.use("/courses", courseRoutes);
 app.use("/enroll", enrollmentRoutes);
 
 // Database
-const sequelize = require("./config/db"); // ✅ point to your db config
+const sequelize = require("./config/database");
 
-sequelize.authenticate()
-  .then(() => console.log("✅ Database connected"))
-  .catch(err => console.error("❌ DB Error:", err));
-
-sequelize.sync({ alter: true }) // auto-create/update tables
-  .then(() => console.log("✅ Models synced with DB"))
-  .catch(err => console.error("❌ Sync Error:", err));
+sequelize.sync({ alter: true })
+  .then(() => console.log("✅ All models synchronized successfully."))
+  .catch(err => console.error("❌ Model synchronization failed:", err));
 
 // Start server
 const PORT = process.env.PORT || 5000; // ✅ use 5000 instead of 5432
